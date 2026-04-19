@@ -1,0 +1,75 @@
+<div class="form-page">
+  <div class="form-card">
+    <div class="top-row">
+      <div>
+        <h1>Create New Incident</h1>
+      </div>
+
+      <a routerLink="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+
+    <form (ngSubmit)="submitIncident()" #incidentForm="ngForm">
+      <div class="form-group">
+        <label for="title">Incident Title</label>
+        <input
+          id="title"
+          name="title"
+          [(ngModel)]="incident.title"
+          required
+          placeholder="Enter incident title">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="incident.description"
+          required
+          rows="5"
+          placeholder="Describe the incident"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="severity">Severity</label>
+          <select
+            id="severity"
+            name="severity"
+            [(ngModel)]="incident.severity"
+            required>
+            <option value="">Select severity</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select
+            id="status"
+            name="status"
+            [(ngModel)]="incident.status"
+            required>
+            <option value="">Select status</option>
+            <option value="Open">Open</option>
+            <option value="Investigating">Investigating</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" [disabled]="incidentForm.invalid">
+          {{ isEditMode ? 'Update Incident' : 'Save Incident' }}
+        </button>
+        <a routerLink="/dashboard" class="btn btn-secondary">Cancel</a>
+      </div>
+
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>

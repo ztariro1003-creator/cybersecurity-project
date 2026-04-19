@@ -1,0 +1,60 @@
+<div class="form-page">
+  <div class="form-card">
+    <div class="top-row">
+      <div>
+        <h1>Add A New Asset</h1>
+      </div>
+
+      <a routerLink="/assets" class="btn btn-secondary"> Back</a>
+    </div>
+
+    <form (ngSubmit)="submitAsset()" #assetForm="ngForm">
+      <div class="form-group">
+        <label for="title">Asset Name</label>
+        <input
+          id="asset_name"
+          name="asset_name"
+          [(ngModel)]="asset.asset_name"
+          required
+          placeholder="Enter asset name">
+      </div>
+
+      <div class="form-group">
+        <label for="asset_type">Asset Type</label>
+        <input
+          id="asset_type"
+          name="asset_type"
+          [(ngModel)]="asset.asset_type"
+          required
+          placeholder="Describe the asset">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="location">Location</label>
+          <select
+            id="location"
+            name="location"
+            [(ngModel)]="asset.location"
+            required>
+            <option value="">Select location</option>
+            <option value="Data Center A">Data Center A</option>
+            <option value="Data Center B">Data Center B</option>
+            <option value="Office">Office</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" [disabled]="assetForm.invalid">
+          Save Asset
+        </button>
+        <a routerLink="/dashboard" class="btn btn-secondary">Cancel</a>
+      </div>
+
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    </form>
+  </div>
+</div>

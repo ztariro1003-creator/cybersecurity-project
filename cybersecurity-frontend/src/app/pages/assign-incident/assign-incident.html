@@ -1,0 +1,15 @@
+<div class="assign-page">
+  <h2>Assign Incident</h2>
+
+  <label for="assignedTo">Select Team</label>
+  <select id="assignedTo" [(ngModel)]="assignedTo">
+    <option value="">-- Choose a team --</option>
+    <option *ngFor="let team of teams" [value]="team">
+      {{ team }}
+    </option>
+  </select>
+
+  <br><br>
+
+  <button (click)="assign()">Assign</button>
+</div>

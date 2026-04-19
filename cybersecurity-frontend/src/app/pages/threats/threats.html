@@ -1,0 +1,50 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h2>Threats</h2>
+    </div>
+
+    <a
+      routerLink="/add-threat"
+      class="btn btn-primary"
+      *ngIf="authService.canManageData()">
+      Add New Threat
+    </a>
+  </div>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th *ngIf="!authService.isViewer()">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let threat of threats">
+          <td>{{ threat.threat_id }}</td>
+          <td>{{ threat.name }}</td>
+          <td>{{ threat.description }}</td>
+          <td>{{ threat.severity_level }}</td>
+          <td *ngIf="!authService.isViewer()">
+            <button class="btn btn-secondary" *ngIf="authService.canManageData()" (click)="editThreat(threat)">
+              Edit
+            </button>
+            <button class="btn btn-danger" *ngIf="authService.isAdmin()" (click)="deleteThreat(threat.threat_id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="threats.length === 0">
+          <td colspan="5">No threats found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

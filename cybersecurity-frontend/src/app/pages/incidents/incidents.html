@@ -1,0 +1,33 @@
+<h2>Incidents</h2>
+
+<p><a routerLink="/incidents/new" *ngIf="authService.canManageData()">Add New Incident</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Severity</th>
+      <th>Status</th>
+      <th>Assigned To</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let incident of incidents">
+      <td>{{ incident.id }}</td>
+      <td>{{ incident.title }}</td>
+      <td>{{ incident.description }}</td>
+      <td>{{ incident.severity }}</td>
+      <td>{{ incident.status }}</td>
+      <td>{{ incident.assignedTo || 'Unassigned' }}</td>
+      <td>
+        <button *ngIf="authService.isAdmin()" (click)="editIncident(incident)">Edit</button>
+        <button *ngIf="authService.isAdmin()" (click)="deleteIncident(incident.id!)">Delete</button>
+        <button *ngIf="!authService.isViewer()" (click)="viewIncident(incident)">View</button>
+        <button *ngIf="authService.canManageData()" (click)="assignIncident(incident.id!)">Assign</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

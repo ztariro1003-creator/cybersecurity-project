@@ -1,0 +1,74 @@
+<div class="add-incident-page">
+  <h2>Add Incident</h2>
+
+  <div class="form-card">
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label class="form-label">Incident Title</label>
+        <input
+          type="text"
+          class="form-input"
+          placeholder="Enter incident title"
+          [(ngModel)]="incident.title"
+          name="title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea
+          class="form-textarea"
+          placeholder="Describe the incident"
+          [(ngModel)]="incident.description"
+          name="description"
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Severity</label>
+          <select
+            class="form-select"
+            [(ngModel)]="incident.severity"
+            name="severity"
+          >
+            <option value="">Select Severity</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select
+            class="form-select"
+            [(ngModel)]="incident.status"
+            name="status"
+          >
+            <option value="">Select Status</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button type="button" class="submit-btn" (click)="predictRisk()">
+          Predict Risk
+        </button>
+
+        <button type="submit" class="submit-btn">
+          Save Incident
+        </button>
+      </div>
+
+      <p *ngIf="predictedRisk" class="prediction-text">
+        Predicted Risk: {{ predictedRisk }}
+      </p>
+
+    </form>
+  </div>
+</div>

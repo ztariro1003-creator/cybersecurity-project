@@ -1,0 +1,124 @@
+body {
+  background: #05070d;
+  color: white;
+  font-family: Arial;
+}
+
+.dashboard-page {
+  padding: 20px;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 32px;
+}
+
+.hero-copy {
+  color: #aaa;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+
+.btn-primary {
+  background: blue;
+  color: white;
+}
+
+.btn-secondary {
+  background: gray;
+  color: white;
+}
+
+/* GRID */
+.top-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+/* CARDS */
+.card {
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* PANELS */
+.panel {
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* BARS */
+.bar {
+  margin: 10px 0;
+}
+
+.track {
+  background: #333;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.fill {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.red { background: red; }
+.orange { background: orange; }
+.yellow { background: yellow; }
+.green { background: green; }
+
+/* TABLE */
+table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+.high { color: orange; }
+.critical { color: red; }
+
+/* TIMELINE */
+.timeline {
+  list-style: none;
+  padding: 0;
+}
+
+.timeline li {
+  padding: 5px 0;
+}
+
+/* AI */
+.highlight {
+  color: red;
+  font-weight: bold;
+}

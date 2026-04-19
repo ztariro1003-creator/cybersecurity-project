@@ -1,0 +1,134 @@
+<div class="dashboard-page">
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Security Operations Center</p>
+      <h1>Cybersecurity Incident Intelligence System</h1>
+
+    </div>
+
+    <div class="hero-actions">
+  <button class="btn btn-primary" routerLink="/incidents/new">+ New Incident</button>
+  <button class="btn btn-secondary" routerLink="/reports">Generate Report</button>
+</div>
+  </section>
+
+  <section class="top-grid">
+
+    <div class="card">
+      <h3>Open Incidents</h3>
+      <h2>{{ incidentCount }}</h2>
+      <p>Critical: {{ criticalCount }} | High: {{ highCount }} | Medium: {{ mediumCount }} | Low: {{ lowCount }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Threat Level</h3>
+      <h2>{{ riskScore }}%</h2>
+      <p>AI Risk Score</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Assets</h3>
+      <h2>{{ assetCount }}</h2>
+      <p>Protected Systems</p>
+    </div>
+
+    <div class="card">
+      <h3>Response Efficiency</h3>
+<h2>{{ detectionAccuracy }}%</h2>
+<p>Derived from incident handling status</p>
+    </div>
+
+  </section>
+
+  <section class="grid">
+
+    <div class="panel">
+      <h3>Incident Severity</h3>
+
+      <div class="bar">
+        <span>Critical ({{ criticalCount }})</span>
+        <div class="track"><div class="fill red" [style.width.%]="criticalBarWidth"></div></div>
+      </div>
+
+      <div class="bar">
+        <span>High ({{ highCount }})</span>
+        <div class="track"><div class="fill orange" [style.width.%]="highBarWidth"></div></div>
+      </div>
+
+      <div class="bar">
+        <span>Medium ({{ mediumCount }})</span>
+        <div class="track"><div class="fill yellow" [style.width.%]="mediumBarWidth"></div></div>
+      </div>
+
+      <div class="bar">
+        <span>Low ({{ lowCount }})</span>
+        <div class="track"><div class="fill green" [style.width.%]="lowBarWidth"></div></div>
+      </div>
+    </div>
+
+   <div class="panel">
+  <h3>AI Insight</h3>
+  <p class="highlight">Predicted Risk: {{ predictedRisk }}</p>
+  <p>Based on Severity: {{ aiSeverity }}</p>
+  <p>Incident Status: {{ aiStatus }}</p>
+  <p>Action: {{ recommendedAction }}</p>
+</div>
+
+    <div class="panel full">
+      <h3>Recent Incidents</h3>
+
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Severity</th>
+        </tr>
+
+        <tr *ngFor="let incident of incidents.slice(0, 5)">
+          <td>{{ incident.id }}</td>
+          <td>{{ incident.title }}</td>
+          <td>{{ incident.status }}</td>
+          <td [ngClass]="getSeverityClass(incident.severity)">{{ incident.severity }}</td>
+        </tr>
+
+        <tr *ngIf="incidents.length === 0">
+          <td colspan="4">No incidents found.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="panel full">
+      <h3>Threat Activity</h3>
+
+      <ul class="timeline">
+        <li *ngFor="let threat of threats.slice(0, 5)">
+          {{ getThreatName(threat) }} - {{ getThreatLevel(threat) }}
+        </li>
+
+        <li *ngIf="threats.length === 0">
+          No threat activity found.
+        </li>
+      </ul>
+    </div>
+<div class="panel">
+  <h3>Incident Severity Chart</h3>
+  <canvas
+    baseChart
+    [data]="{ labels: pieChartLabels, datasets: pieChartDatasets }"
+    [type]="pieChartType">
+  </canvas>
+</div>
+
+<div class="panel">
+  <h3>Incident Status Chart</h3>
+  <canvas
+    baseChart
+    [data]="{ labels: barChartLabels, datasets: barChartDatasets }"
+    [type]="barChartType">
+  </canvas>
+</div>
+  </section>
+
+</div>

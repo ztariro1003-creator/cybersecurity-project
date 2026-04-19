@@ -1,0 +1,42 @@
+<div class="login-page">
+  <div class="login-card">
+    <p class="eyebrow">Cybersecurity Incident Intelligence System</p>
+    <h1>Login</h1>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          type="text"
+          required
+          placeholder="Enter username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          type="password"
+          required
+          placeholder="Enter password">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="demo-box">
+        <div class="demo-box">
+  <p><strong>Admin:</strong> admin / admin123</p>
+  <p><strong>Analyst:</strong> analyst / analyst123</p>
+  <p><strong>Viewer:</strong> viewer / viewer123</p>
+</div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="reports-page">
+  <div class="reports-card">
+    <div class="top-row">
+      <div>
+        <p class="eyebrow">Reporting Center</p>
+        <h1>Security Summary Report</h1>
+        <p class="subtitle">Overview of incidents, threats, assets, and severity distribution.</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        <button class="btn btn-primary" (click)="printReport()">Print Report</button>
+      </div>
+    </div>
+<div class="ai-card" *ngIf="aiSummary">
+  <div class="ai-title">🤖 AI Risk Analysis</div>
+
+  <div class="ai-item">
+    <span class="ai-label">Overall Risk:</span>
+    <span class="ai-value">{{ aiSummary.risk }}</span>
+  </div>
+
+  <div class="ai-item">
+    <span class="ai-label">Confidence:</span>
+    <span class="ai-value">{{ aiSummary.confidence }}%</span>
+  </div>
+
+  <div class="ai-item">
+    <span class="ai-label">Recommendation:</span>
+    <span class="ai-value">{{ aiSummary.action }}</span>
+  </div>
+</div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <h3>Total Incidents</h3>
+        <h2>{{ incidentCount }}</h2>
+      </div>
+
+      <div class="stat-box">
+        <h3>Total Assets</h3>
+        <h2>{{ assetCount }}</h2>
+      </div>
+
+      <div class="stat-box">
+        <h3>Total Threats</h3>
+        <h2>{{ threatCount }}</h2>
+      </div>
+
+      <div class="stat-box">
+        <h3>Critical Incidents</h3>
+        <h2>{{ criticalCount }}</h2>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3>Severity Breakdown</h3>
+      <p>Critical: {{ criticalCount }}</p>
+      <p>High: {{ highCount }}</p>
+      <p>Medium: {{ mediumCount }}</p>
+      <p>Low: {{ lowCount }}</p>
+    </div>
+
+    <div class="report-section">
+      <h3>Recent Incidents</h3>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Severity</th>
+        </tr>
+        <tr *ngFor="let incident of incidents.slice(0, 10)">
+          <td>{{ incident.id }}</td>
+          <td>{{ incident.title }}</td>
+          <td>{{ incident.status }}</td>
+          <td>{{ incident.severity }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

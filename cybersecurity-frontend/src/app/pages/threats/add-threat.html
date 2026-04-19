@@ -1,0 +1,57 @@
+<div class="form-page">
+  <div class="form-card">
+    <div class="top-row">
+      <div>
+        <h1>{{ isEditMode ? 'Edit Threat' : 'Add Threat' }}</h1>
+      </div>
+
+      <a routerLink="/threats" class="btn btn-secondary">Back</a>
+    </div>
+
+    <form #threatForm="ngForm" (ngSubmit)="submitThreat()">
+      <div class="form-group">
+        <label for="name">Threat Name</label>
+        <input
+          id="name"
+          name="name"
+          [(ngModel)]="threat.name"
+          required
+          placeholder="Enter threat name">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="threat.description"
+          required
+          rows="4"
+          placeholder="Enter threat description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="severity_level">Severity Level</label>
+        <select
+          id="severity_level"
+          name="severity_level"
+          [(ngModel)]="threat.severity_level"
+          required>
+          <option value="">Select severity</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          <option value="Critical">Critical</option>
+        </select>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="threatForm.invalid">
+          {{ isEditMode ? 'Update Threat' : 'Save Threat' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
